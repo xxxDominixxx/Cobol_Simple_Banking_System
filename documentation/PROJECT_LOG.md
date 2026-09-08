@@ -25,3 +25,21 @@ Overall, I now have a working COBOL development environment and a working test p
 ### Future Goals
 
 Start building the basic structure of the banking system and learn COBOL concepts along the way.
+
+# ========================================================================================
+
+## 2026-09-08
+
+### First entry - learning the basics
+
+Today I started learning the basic structure and syntax of COBOL. I learned about the different divisions, variables, `PIC`, `DISPLAY`, `ACCEPT`, and `STOP RUN`.
+
+I also learned how COBOL level numbers work and how fixed-length `PIC X` fields can contain extra spaces. I learned to use `FUNCTION TRIM` when displaying these values.
+
+I updated the program so it now asks for the user's name, age, city, and country, then displays the information back.
+
+### Future Goals
+
+Continue learning COBOL fundamentals, starting with numeric data and arithmetic, and gradually turn the program into the planned banking system.
+
+# =======================================================================================
