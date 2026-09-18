@@ -43,3 +43,25 @@ I updated the program so it now asks for the user's name, age, city, and country
 Continue learning COBOL fundamentals, starting with numeric data and arithmetic, and gradually turn the program into the planned banking system.
 
 # =======================================================================================
+
+## 2026-09-18
+
+### Second entry - working with multiple customers
+
+Today I continued developing the basic structure of the banking system. I changed the program from storing information about a single customer to storing information about multiple customers.
+
+I learned how to use **group items** and the `OCCURS` clause to create a table of customer records. Each customer contains a name, age, city, and country, and the program can currently store up to 10 customers.
+
+I also learned how to use **subscripts** to access a specific customer, for example `CUSTOMER-NAME(1)` for the first customer. I introduced `CUSTOMER-COUNT` to keep track of how many customers have actually been added, rather than assuming that all 10 customer slots are being used.
+
+I then turned the program into a simple **menu-driven application** with three choices: add users, display all users, or exit the program.
+
+To make this work, I learned how to use `PERFORM`, including `PERFORM ... TIMES` for repeating an operation a specific number of times and `PERFORM VARYING` for looping through the customers. I also learned about `EVALUATE`, which can be used to handle different menu choices, similar to a switch/case structure in other programming languages.
+
+The program can now add multiple customers and display all customers that have been added.
+
+### Future Goals
+
+Improve the input validation so the program cannot add more customers than the available storage, then perhaps start adding actual banking functionality such as customer accounts, account balances, deposits, withdrawals, and eventually transfers and transaction history.
+
+# =======================================================================================
