@@ -12,9 +12,10 @@
                03 CUSTOMER-COUNTRY PIC X(30).
 
        01 CUSTOMER-NUM PIC 99.
-       01 CUSTOMER-COUNT  PIC 99.
-       01 USERS-TO-ADD    PIC 99.
-       01 MENU-CHOICE     PIC 9.
+       01 CUSTOMER-COUNT PIC 99.
+       01 CUSTOMER-REMAINING PIC 99.
+       01 USERS-TO-ADD PIC 99.
+       01 MENU-CHOICE PIC 9.
 
        PROCEDURE DIVISION.
 
@@ -32,35 +33,73 @@
 
                EVALUATE MENU-CHOICE    *> check which menu option was selected
 
+           *> ======== Choice 1 --- Add users ==========================
+
                    WHEN 1
-                       DISPLAY "How many users do you want to add? "
-                       ACCEPT USERS-TO-ADD
+                       COMPUTE CUSTOMER-REMAINING = 10 - CUSTOMER-COUNT
 
-                       PERFORM USERS-TO-ADD TIMES  *> perform it so many times
-
-                           ADD 1 TO CUSTOMER-COUNT  *> increase customer count by 1
-                           MOVE CUSTOMER-COUNT TO CUSTOMER-NUM *> copy current customer count to customer number
-
+                       IF CUSTOMER-REMAINING = 0
                            DISPLAY " "
-                           DISPLAY "Adding customer "
-                                   CUSTOMER-NUM
+                           DISPLAY "The customer table is full."
+                           DISPLAY "No more customers can be added."
+                       ELSE                       
+                           CALL "SYSTEM" USING "cls" *> Clean terminal
+                           DISPLAY "There are " 
+                                   CUSTOMER-REMAINING
+                                   " customer spaces remaining."                         
+                           DISPLAY "How many users do you want to add? "
+                           ACCEPT USERS-TO-ADD
+    
+                           IF USERS-TO-ADD < 1 
+                              OR USERS-TO-ADD > CUSTOMER-REMAINING
+                               DISPLAY " "
+                               DISPLAY "Invalid number of customers."
+                               DISPLAY "You can add between 1 and "
+                                       CUSTOMER-REMAINING
+                                       " customers."
+    
+                           ELSE
+                               PERFORM USERS-TO-ADD TIMES  *> perform it so many times
+    
+                                   ADD 1 TO CUSTOMER-COUNT  *> increase customer count by 1
+                                   MOVE CUSTOMER-COUNT TO CUSTOMER-NUM   *> copy current customer count to customer number
+    
+                                   DISPLAY " "
+                                   DISPLAY "Adding customer "
+                                           CUSTOMER-NUM
+    
+                                   DISPLAY "What is your name? "
+                                   ACCEPT CUSTOMER-NAME(CUSTOMER-NUM)
+    
+                                   DISPLAY "What is your age? "
+                                   ACCEPT CUSTOMER-AGE(CUSTOMER-NUM)
+    
+                                   DISPLAY "What is your city? "
+                                   ACCEPT CUSTOMER-CITY(CUSTOMER-NUM)
+    
+                                   DISPLAY "What is your country? "
+                                   ACCEPT CUSTOMER-COUNTRY(CUSTOMER-NUM)
+                                   
+                                   CALL "SYSTEM" USING "cls"
+                               END-PERFORM
+                               
+                               IF USERS-TO-ADD < 2
+                                       DISPLAY 
+                                       "Customer successfully added."
+                                   ELSE
+                                       DISPLAY 
+                                       "Successfully added "
+                                       USERS-TO-ADD
+                                       " customers."
+                               END-IF   
+                           END-IF
+                       END-IF
 
-                           DISPLAY "What is your name? "
-                           ACCEPT CUSTOMER-NAME(CUSTOMER-NUM)
-
-                           DISPLAY "What is your age? "
-                           ACCEPT CUSTOMER-AGE(CUSTOMER-NUM)
-
-                           DISPLAY "What is your city? "
-                           ACCEPT CUSTOMER-CITY(CUSTOMER-NUM)
-
-                           DISPLAY "What is your country? "
-                           ACCEPT CUSTOMER-COUNTRY(CUSTOMER-NUM)
-
-                       END-PERFORM
+           *> ================ Choice 2 --- Display all Users ==========
 
                    WHEN 2
                        IF CUSTOMER-COUNT = 0
+                           CALL "SYSTEM" USING "cls"
                            DISPLAY "No customers have been added yet."
                        ELSE
                            PERFORM VARYING CUSTOMER-NUM    *> loop through every customer
@@ -84,6 +123,8 @@
 
                            END-PERFORM
                        END-IF
+
+           *> =============== Choice 3 --- Exit program ================
 
                    WHEN 3
                        DISPLAY "Exiting program..."

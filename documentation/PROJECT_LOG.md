@@ -65,3 +65,33 @@ The program can now add multiple customers and display all customers that have b
 Improve the input validation so the program cannot add more customers than the available storage, then perhaps start adding actual banking functionality such as customer accounts, account balances, deposits, withdrawals, and eventually transfers and transaction history.
 
 # =======================================================================================
+
+## 2026-10-08
+
+### Third entry - customer capacity and input validation
+
+I continued working on the banking system after some time away from actively developing it. I have not abandoned this project, or the other projects I am working on. There are simply other things that are more important and require my attention.
+
+Between university, studying and assignments, job hunting, helping at home, taking care of some family members, and keeping up with my responsibilities, hobbies, relationships, church, volunteering, and other parts of my life, working on this project was not and will not be my highest priority. I still wanted to continue with it, though, because I am genuinely interested in learning COBOL and seeing how far I can take this project.
+
+The main goal for this session was to improve the customer system so that the program could properly handle the limit of 10 customers. Previously, the program could attempt to add more customers than the `OCCURS 10 TIMES` table could store.
+
+I added a `CUSTOMER-REMAINING` variable and used `COMPUTE` to calculate how many customer spaces were still available based on the current `CUSTOMER-COUNT`. The program now tells the user how many spaces remain before asking how many customers they want to add.
+
+I also added input validation using `IF` statements. The user must now enter a number between 1 and the number of available spaces. If the customer table is already full, the program displays a message and prevents any additional customers from being added.
+
+While implementing this, I learned more about **nested `IF` statements** and how multiple conditions can be combined using `OR`. I also got more practice understanding where `END-IF` is needed when working with nested conditions.
+
+I then experimented with improving the terminal output by using `CALL "SYSTEM" USING "cls"` to clear the Windows terminal. This allows the program to clear the previous customer's information before moving on to the next customer when multiple customers are being added.
+
+I also changed the success message so that the program gives different feedback depending on whether one customer or multiple customers were added.
+
+The customer management part of the program is now more robust and user-friendly. The program can store up to 10 customers, prevents the user from exceeding that limit, and provides clearer feedback during the process.
+
+I am not sure how frequently I will be able to update this project, but there will be updates. There will inevitably be periods where university, work, family, or other responsibilities take priority. However, I do not consider the project abandoned. I am interested in COBOL and want to continue developing this system whenever I have the time and opportunity to do so.
+
+### Future Goals
+
+Start adding actual banking functionality to the system. The next step will likely be creating accounts for customers, including account numbers and balances, and then adding functionality for deposits and withdrawals. Eventually, I want to expand this into transfers and transaction history.
+
+# =======================================================================================
