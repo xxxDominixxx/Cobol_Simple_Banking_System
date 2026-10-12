@@ -95,3 +95,15 @@ I am not sure how frequently I will be able to update this project, but there wi
 Start adding actual banking functionality to the system. The next step will likely be creating accounts for customers, including account numbers and balances, and then adding functionality for deposits and withdrawals. Eventually, I want to expand this into transfers and transaction history.
 
 # =======================================================================================
+
+## 2026-10-12
+
+### Fourth entry - file persistence
+
+Today, I added basic file persistence to the banking system. Previously, customer information was only stored in memory and was lost when the program closed.
+
+I implemented file handling using COBOL's file operations to save customer records to `customer.dat` and load them again when the program starts. I tested the functionality and confirmed that customer information persists between program runs.
+
+This was an important step toward making the application more practical. Next, I will continue improving the project and gradually work toward adding actual banking functionality.
+
+# =======================================================================================**
